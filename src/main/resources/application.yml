@@ -1,0 +1,8 @@
+spring:
+    application: 
+        name: aprendendo-spring
+    main:   
+        banner-mode: console
+server:
+    servlet:
+        context-path: /${spring.application.name}
