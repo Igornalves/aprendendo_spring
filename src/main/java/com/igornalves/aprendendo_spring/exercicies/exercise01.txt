@@ -1,2 +1,3 @@
-Crie um controller e um metodo que retorne uma lista de nomes de animes atraves da seguinte URL:
-    http://localhost:8080/v1/animes
+# Exercicio 001: 
+    Crie um controller e um metodo que retorne uma lista de nomes de animes atraves da seguinte URL:
+        http://localhost:8080/v1/animes

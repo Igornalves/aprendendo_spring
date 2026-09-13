@@ -6,6 +6,9 @@ spring:
     threads:
         virtual:
             enabled: true
+    web:
+        error:
+            include-stacktrace: on-param
 server:
     servlet:
         context-path: /${spring.application.name}
