@@ -3,6 +3,12 @@ spring:
         name: aprendendo-spring
     main:   
         banner-mode: console
+    threads:
+        virtual:
+            enabled: true
 server:
     servlet:
         context-path: /${spring.application.name}
+    tomcat:
+        threads:
+            max: 20
