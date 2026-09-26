@@ -1,12 +1,13 @@
 package com.igornalves.aprendendo_spring.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
-@RequestMapping(value = "hello-controller")
+@RequestMapping(value = "v1/greetings")
+@Slf4j
 public class HelloController {
 
     @GetMapping(value = {"/hi", "hi/"})
@@ -17,6 +18,12 @@ public class HelloController {
     @RequestMapping(method = RequestMethod.GET, value = "/conhencendo")
     public String conhecendo(){
         return "Olá mundo, conhencendo !!!";
+    }
+
+    @PostMapping
+    public Long saveAll(@RequestBody String name){
+        log.info("save '{}'",name);
+        return ThreadLocalRandom.current().nextLong(1, 1000);
     }
 
 }

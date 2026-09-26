@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "AprendendoSpringApplication",
+            "request": "launch",
+            "mainClass": "com.igornalves.aprendendo_spring.AprendendoSpringApplication",
+            "projectName": "aprendendo-spring"
+        }
+    ]
+}
