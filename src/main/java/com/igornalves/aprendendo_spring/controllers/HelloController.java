@@ -11,18 +11,18 @@ import java.util.concurrent.ThreadLocalRandom;
 public class HelloController {
 
     @GetMapping(value = {"/hi", "hi/"})
-    public String hi(){
+    public String hi() {
         return "Olá mundo !!!";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/conhencendo")
-    public String conhecendo(){
+    public String conhecendo() {
         return "Olá mundo, conhencendo !!!";
     }
 
     @PostMapping
-    public Long saveAll(@RequestBody String name){
-        log.info("save '{}'",name);
+    public Long saveAll(@RequestBody String name) {
+        log.info("save '{}'", name);
         return ThreadLocalRandom.current().nextLong(1, 1000);
     }
 

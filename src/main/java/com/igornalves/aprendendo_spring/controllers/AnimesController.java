@@ -19,9 +19,20 @@ public class AnimesController {
         return Anime.getAnimes();
     }
 
-    @PostMapping
-    public Long saveAnime(@RequestBody String name) {
-        log.info("save '{}'", name);
-        return ThreadLocalRandom.current().nextLong(1, 1000);
+    @GetMapping("{id}")
+    public Anime getAnimeById(@PathVariable Long id) {
+        return Anime.getAnimes()
+                .stream()
+                .filter(anime -> anime.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
+
+    @PostMapping
+    public Anime saveAnime(@RequestBody Anime anime) {
+        anime.setId(ThreadLocalRandom.current().nextLong(100_000));
+        anime.getAnimes().add(anime);
+        return anime;
+    }
+
 }
