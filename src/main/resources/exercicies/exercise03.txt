@@ -1,0 +1,3 @@
+# Exercise 03 - Post
+
+Atualize o AnimeController atraves de um metodo que recebe um Anime Json via post, adiciona, na lista existente de animes, e retorna o objeto criado. Restricao: caso o id seja passado na requisicao, ele deve ser ignorado, gere um id aleatorio antes de adicionar o objeto na lista

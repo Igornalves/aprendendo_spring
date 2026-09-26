@@ -1,0 +1,5 @@
+# Exercicio 002: (@RequesParam) (@PathVariable)
+    Crie uma classe chamada anime, dentro de um pacote chamado domain, com os seguintes atributos:
+        long id, 
+        string name,
+    Crie um metodo dentro de anime que retorne uma lista "harcoded" de Animes; Atualize o AnimeController para retorna uma lista de animes, em seguida, crie outro dois metodos, um para filtra pelo nome, usando @RequestParam, e o segundo, para retorna um Anime pelo Id, usando @PathVariable  
