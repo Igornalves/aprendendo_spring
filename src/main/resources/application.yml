@@ -9,6 +9,9 @@ spring:
     web:
         error:
             include-stacktrace: on-param
+spring-doc:
+    api-docs:
+        enabled: true
 server:
     servlet:
         context-path: /${spring.application.name}

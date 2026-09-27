@@ -1,12 +1,16 @@
 package com.igornalves.aprendendo_spring.controllers;
 
-import ch.qos.logback.classic.Logger;
+import com.igornalves.aprendendo_spring.DTOs.Request.ProducerPostRequest;
+import com.igornalves.aprendendo_spring.DTOs.Response.ProducerGetResponse;
 import com.igornalves.aprendendo_spring.domain.Producer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -34,12 +38,27 @@ public class ProducerController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             headers = "x-api-key=1234"
     )
-    public Producer saveProducer(@RequestBody Producer producer, @RequestHeader HttpHeaders headers) {
-
+    public ResponseEntity<ProducerGetResponse> saveProducer(@RequestBody ProducerPostRequest producerPostRequest, @RequestHeader HttpHeaders headers) {
         log.info("{}", headers);
-        producer.setId(ThreadLocalRandom.current().nextLong(100_000));
-        producer.getProducers().add(producer);
-        return producer;
+
+        var producer = Producer.builder()
+                .id(ThreadLocalRandom.current().nextLong(100_000))
+                .name(producerPostRequest.getName())
+                .createdAt(LocalDateTime.now())
+                .build();
+
+        Producer.getProducers().add(producer);
+
+        var responseHeaders = new HttpHeaders();
+        responseHeaders.add("Authorization", "My key");
+
+        var response = ProducerGetResponse.builder()
+                .id(producer.getId())
+                .name(producer.getName())
+                .createdAt(producer.getCreatedAt())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.CREATED).headers(responseHeaders).body(response);
     }
 
 }
