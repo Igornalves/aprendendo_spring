@@ -3,6 +3,7 @@ package com.igornalves.aprendendo_spring.controllers;
 import com.igornalves.aprendendo_spring.DTOs.Request.ProducerPostRequest;
 import com.igornalves.aprendendo_spring.DTOs.Response.ProducerGetResponse;
 import com.igornalves.aprendendo_spring.domain.Producer;
+import com.igornalves.aprendendo_spring.mapper.ProducerMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ import java.util.concurrent.ThreadLocalRandom;
 @RequestMapping("v1/producers")
 @Slf4j
 public class ProducerController {
+
+    private static final ProducerMapper MAPPER = ProducerMapper.INSTANCE;
 
     @GetMapping
     public List<Producer> listAllProducers() {
@@ -40,6 +43,8 @@ public class ProducerController {
     )
     public ResponseEntity<ProducerGetResponse> saveProducer(@RequestBody ProducerPostRequest producerPostRequest, @RequestHeader HttpHeaders headers) {
         log.info("{}", headers);
+
+        Producer producer01 = MAPPER.toProducer(producerPostRequest);
 
         var producer = Producer.builder()
                 .id(ThreadLocalRandom.current().nextLong(100_000))
